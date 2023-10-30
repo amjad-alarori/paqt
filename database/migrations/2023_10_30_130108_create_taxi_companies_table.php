@@ -14,6 +14,9 @@ return new class extends Migration
         Schema::create('taxi_companies', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('city');
+            $table->unsignedBigInteger('plot_id')->nullable();
+            $table->foreign('plot_id')->references('id')->on('plots');
             $table->timestamps();
         });
     }

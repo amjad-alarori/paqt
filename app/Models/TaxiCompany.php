@@ -14,4 +14,9 @@ class TaxiCompany extends Model
     {
         return $this->hasMany(Booking::class);
     }
+
+    public function plot()
+    {
+        return $this->belongsTo(Plot::class);
+    }
 }

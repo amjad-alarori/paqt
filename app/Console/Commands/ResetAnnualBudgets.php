@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 use App\Models\Resident;
 use App\Models\Budget;
@@ -36,11 +37,16 @@ class ResetAnnualBudgets extends Command
         $residents = Resident::all();
 
         foreach ($residents as $resident) {
-            $budget = $resident->budget; // Assuming you have a relationship set up
+            $budget = $resident->budget;
+
             if ($budget) {
-                $budget->update([
-                    'km' => 1000, // Reset to 1000 km
-                ]);
+                $lastUpdated = $budget->updated_at;
+                $oneYearFromLastUpdate = $lastUpdated->addYear();
+                if (Carbon::now() >= $oneYearFromLastUpdate) {
+                    $budget->update([
+                        'km' => 1000,
+                    ]);
+                }
             }
         }
 

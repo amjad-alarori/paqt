@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('residents', function (Blueprint $table) {
+        Schema::create('plots', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('city');
-            $table->unsignedBigInteger('plot_id')->nullable();
-            $table->foreign('plot_id')->references('id')->on('plots');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }
@@ -26,9 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('residents', function (Blueprint $table) {
-            $table->dropForeign(['plot_id']);
-            $table->dropColumn('plot_id');
-        });
+        Schema::dropIfExists('plots');
     }
 };

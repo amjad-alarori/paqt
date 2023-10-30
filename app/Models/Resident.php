@@ -16,8 +16,13 @@ class Resident extends Model
         return $this->hasMany(Booking::class);
     }
 
-    public function budget(): HasOne // Define a one-to-one relationship with Budget
+    public function budget(): HasOne
     {
         return $this->hasOne(Budget::class);
+    }
+
+    public function plot()
+    {
+        return $this->belongsTo(Plot::class);
     }
 }

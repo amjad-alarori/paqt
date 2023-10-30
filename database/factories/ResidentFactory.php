@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Plot;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,6 +10,9 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class ResidentFactory extends Factory
 {
+
+    private $plotIds = [];
+
     /**
      * Define the model's default state.
      *
@@ -16,9 +20,16 @@ class ResidentFactory extends Factory
      */
     public function definition(): array
     {
+        if (empty($this->plotIds)) {
+            $this->plotIds = Plot::pluck('id')->shuffle()->all();
+        }
+
+        $plotId = array_shift($this->plotIds);
 
         return [
             'name' => fake()->name(),
+            'city' => 'Utrecht',
+            'plot_id' =>  $plotId,
             'created_at' => fake()->dateTimeBetween('-1 year'),
             'updated_at' => fake()->dateTimeBetween('-1 year'),
         ];

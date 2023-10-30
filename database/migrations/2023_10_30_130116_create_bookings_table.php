@@ -14,13 +14,10 @@ return new class extends Migration
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('resident_id');
-            $table->unsignedBigInteger('taxi_company_id');
             $table->string('pickup_location');
             $table->string('destination');
             $table->timestamps();
-
             $table->foreign('resident_id')->references('id')->on('residents');
-            $table->foreign('taxi_company_id')->references('id')->on('taxi_companies');
         });
     }
 

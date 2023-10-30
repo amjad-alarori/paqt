@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class BookingFactory extends Factory
 {
+    private $residentIds = [];
+
     /**
      * Define the model's default state.
      *
@@ -18,11 +20,14 @@ class BookingFactory extends Factory
      */
     public function definition(): array
     {
-        $resident = Resident::inRandomOrder()->first();
-        $taxiCompany = TaxiCompany::inRandomOrder()->first();
+        if (empty($this->residentIds)) {
+            $this->residentIds = Resident::pluck('id')->shuffle()->all();
+        }
+
+        $residentId = array_shift($this->residentIds);
+
         return [
-            'resident_id' => $resident->id,
-            'taxi_company_id' => $taxiCompany->id,
+            'resident_id' => $residentId,
             'pickup_location' => fake()->address(),
             'destination' => fake()->address(),
             'created_at' => fake()->dateTimeBetween('-1 year'),

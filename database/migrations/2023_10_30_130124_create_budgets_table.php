@@ -17,7 +17,6 @@ return new class extends Migration
             $table->unsignedInteger('km');
             $table->timestamps();
             $table->boolean('active')->default(true);
-
             $table->foreign('resident_id')->references('id')->on('residents');
 
         });
