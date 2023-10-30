@@ -24,5 +24,6 @@ Route::get('fizzbuzz', [FizzBuzzController::class, 'index'])->name('fizzbuzz');
 
 Route::get('divide', [CollectionDivisionController::class, 'index'])->name('divide');
 
+Route::get('mondays', [MondaysController::class, 'index'])->name('mondays');
 
 
