@@ -1,0 +1,43 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "PAQT API",
+        "description": "API description",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/bookings/{taxiCompany}": {
+            "get": {
+                "summary": "Get all bookings by taxi company",
+                "operationId": "940171b7368166bc0d66efa446242a93",
+                "responses": {
+                    "200": {
+                        "description": "List of bookings"
+                    }
+                }
+            }
+        },
+        "/api/bookings": {
+            "post": {
+                "summary": "Make a new booking",
+                "operationId": "d61cae737c00fbe60d33657a18f6c4a9",
+                "responses": {
+                    "200": {
+                        "description": "New booking"
+                    }
+                }
+            }
+        },
+        "/api/residents": {
+            "get": {
+                "summary": "Get all residents by taxi company",
+                "operationId": "654fb90cc45dc100c55e00d50d595de4",
+                "responses": {
+                    "200": {
+                        "description": "List of residents"
+                    }
+                }
+            }
+        }
+    }
+}

@@ -24,7 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::namespace('api')->group(function () {
     Route::get('bookings/{taxiCompany}', [BookingController::class, 'getBookingsByTaxiCompany']);
-    Route::get('residents', [ResidentController::class, 'getResidentsInUtrecht']);
+    Route::get('residents', [ResidentController::class, 'getResidents']);
     Route::post('bookings', [BookingController::class, 'createBooking']);
 });
 

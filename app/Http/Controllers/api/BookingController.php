@@ -9,6 +9,13 @@ use Illuminate\Http\Request;
 
 class BookingController extends Controller
 {
+    /**
+     * @OA\Get(
+     *     path="/api/bookings/{taxiCompany}",
+     *     summary="Get all bookings by taxi company",
+     *     @OA\Response(response=200, description="List of bookings"),
+     * )
+     */
     public function getBookingsByTaxiCompany(TaxiCompany $taxiCompany)
     {
         $plotId = $taxiCompany->plot_id;
@@ -20,6 +27,13 @@ class BookingController extends Controller
         return response()->json($bookings);
     }
 
+    /**
+     * @OA\POST(
+     *     path="/api/bookings",
+     *     summary="Make a new booking",
+     *     @OA\Response(response=200, description="New booking"),
+     * )
+     */
     public function createBooking(Request $request)
     {
         $validatedData = $request->validate([
