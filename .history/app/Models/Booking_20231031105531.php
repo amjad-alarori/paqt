@@ -16,11 +16,4 @@ class Booking extends Model
     {
         return $this->belongsTo(Resident::class);
     }
-
-    public function scopeFilterByPlotId($query, $plotId)
-{
-    return $query->whereHas('resident', function ($query) use ($plotId) {
-        $query->where('plot_id', $plotId);
-    });
-}
 }

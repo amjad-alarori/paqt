@@ -20,8 +20,10 @@ class BookingController extends Controller
     {
         $plotId = $taxiCompany->plot_id;
 
-        $bookings = Booking::filterByPlotId($plotId)->get();
-    
+        $bookings = Booking::whereHas('resident', function ($query) use ($plotId) {
+            $query->where('plot_id', $plotId);
+        })->get();
+
         return response()->json($bookings);
     }
 
